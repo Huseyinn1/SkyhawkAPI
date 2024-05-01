@@ -1,0 +1,6 @@
+@SkyhawkAPI_HostAddress = http://localhost:5180
+
+GET {{SkyhawkAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
