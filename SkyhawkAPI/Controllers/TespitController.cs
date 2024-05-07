@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using SkyhawkAPI.Data;
 using SkyhawkAPI.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SkyhawkAPI.Controllers
 {
@@ -17,8 +19,8 @@ namespace SkyhawkAPI.Controllers
             _context = context;
         }
 
-        [HttpPost]
-        public IActionResult TespitEkle([FromBody] TespitRequest tespitRequest)
+        [HttpPost("AddTespit")]
+        public IActionResult AddTespit([FromBody] TespitRequest tespitRequest)
         {
             if (tespitRequest == null)
             {
@@ -43,8 +45,9 @@ namespace SkyhawkAPI.Controllers
 
             return Ok("Tespit başarıyla eklendi.");
         }
-        [HttpGet("{id}")]
-        public IActionResult TespitiGetir(int id)
+
+        [HttpGet("GetTespitby/{id}")]
+        public IActionResult GetTespitById(int id)
         {
             var tespit = _context.Tespitler.FirstOrDefault(t => t.Id == id);
 
@@ -55,8 +58,9 @@ namespace SkyhawkAPI.Controllers
 
             return Ok(tespit);
         }
-        [HttpGet]
-        public IActionResult TumTespitleriGetir()
+
+        [HttpGet("GetAllTespit")]
+        public IActionResult GetAllTespits()
         {
             var tespitler = _context.Tespitler.ToList();
             return Ok(tespitler);
